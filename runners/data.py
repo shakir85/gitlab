@@ -4,6 +4,10 @@ Wrappers for Gitlab API requests - Retrieve CI Runners data
 import requests
 
 
+class RunnerDataException(Exception):
+    pass
+
+
 class RunnerData:
     def __init__(self, token):
         self.token: str = token
