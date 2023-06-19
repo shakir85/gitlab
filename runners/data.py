@@ -1,7 +1,13 @@
+import sys
+
 import gitlab
 import os
 
-gl = gitlab.Gitlab(private_token=os.environ['GITLAB_API_TOKEN'])
+try:
+    gl = gitlab.Gitlab(private_token=os.environ['GITLAB_API_TOKEN'])
+except Exception:
+    print("Please export environment variable GITLAB_API_TOKEN=<TokenValue>")
+    sys.exit(1)
 
 
 def get_runners_data(short: bool = True) -> dict:
