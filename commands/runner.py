@@ -10,7 +10,7 @@ def runner():
 
 
 @runner.command(aliases=["ls", "list"], help='List all runners.')
-@click.option('--full', is_flag=True, help='Show more information about each runner.')
+@click.option('--full', default=False, is_flag=True, help='Show more information about each runner.')
 def runner_ls(full) -> None:
     if full:
         r = data.get_runners_data(short=False)
@@ -21,8 +21,15 @@ def runner_ls(full) -> None:
 
 
 @runner.command(aliases=["desc", "description"], help='Describe one or multiple runners.')
-@click.option('--id', '-i', multiple=True, default=list)
+@click.option('--id', '-i', multiple=True, default=list, required=True)
 def runner_desc(id: list) -> None:
     for i in id:
         r = data.describe_runner(runner_id=i)
         click.echo(r)
+
+
+""".option()
+https://click.palletsprojects.com/en/8.1.x/options/
+show_default=True
+nargs=2
+"""
