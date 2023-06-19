@@ -1,4 +1,4 @@
-# pipenv run python runners.py [OPTIONS] COMMAND [ARGS]
+# pipenv run python runner.py [OPTIONS] COMMAND [ARGS]
 """
 CLI commands for managing runners
 """

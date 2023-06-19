@@ -2,7 +2,7 @@ import commands
 
 
 def cli():
-    commands.runners.cli()
+    commands.runner.cli()
 
 
 if __name__ == '__main__':
