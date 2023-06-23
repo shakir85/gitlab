@@ -11,11 +11,13 @@ def runner():
 
 @runner.command(aliases=["ls", "list"], help='List all runners.')
 @click.option('--full', default=False, is_flag=True, help='Show more information about each runner.')
-def runner_ls(full) -> None:
+@click.option('--scope', default='', type=str, required=False, help='Runner scope. Accepted values are: active, paused, online')
+@click.option('--all', '-a', default=False, is_flag=True, help='Get all runners in the Gitlab instance (specific and shared).')
+def runner_ls(full, scope, all) -> None:
     if full:
-        r = data.get_runners_data(short=False)
+        r = data.list_global_runners(full=True, scope=scope, all=all)
     else:
-        r = data.get_runners_data(short=True)
+        r = data.list_global_runners(full=False, scope=scope, all=all)
     for i in r:
         click.echo(i)
 
