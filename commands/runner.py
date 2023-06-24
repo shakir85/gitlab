@@ -2,6 +2,9 @@ import click
 from runners import data
 from click_aliases import ClickAliasedGroup
 from .cli import cli
+from config import Helper
+
+gitlab_obj = Helper.Config.gl
 
 
 @cli.group("runner", cls=ClickAliasedGroup)
@@ -16,9 +19,9 @@ def runner():
 def runner_ls(scope, full, all) -> None:
     # Global runners only
     if full:
-        r = data.list_global_runners(scope, True, all)
+        r = data.list_global_runners(scope, True, all, gl=gitlab_obj)
     else:
-        r = data.list_global_runners(scope, False, all)
+        r = data.list_global_runners(scope, False, all, gl=gitlab_obj)
     for i in r:
         click.echo(i)
 
@@ -27,7 +30,7 @@ def runner_ls(scope, full, all) -> None:
 @click.option('--id', '-i', multiple=True, default=list, required=True)
 def runner_desc(id: list) -> None:
     for i in id:
-        r = data.describe_runner(runner_id=i)
+        r = data.describe_runner(runner_id=i, gl=gitlab_obj)
         click.echo(r)
 
 

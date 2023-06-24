@@ -1,19 +1,11 @@
-import sys
-
 import click
 import gitlab
-import os
-
-try:
-    gl = gitlab.Gitlab(private_token=os.environ['GITLAB_API_TOKEN'])
-except KeyError:
-    print("Please export environment variable GITLAB_API_TOKEN=<TokenValue>")
-    sys.exit(1)
 
 
-def list_global_runners(*args) -> dict:
+def list_global_runners(*args, gl: gitlab.Gitlab) -> dict:
     """
-    Get a list of specific global runners (admin) runners available to the user.
+    Get a list of specific config runners (admin) runners available to the user.
+    :param gl: Gitlab object
     :return: A generator for dicts of runners data
     """
     ignored_items = ('description', 'ip_address', 'is_shared', 'name', 'is_shared', 'status', 'paused')
@@ -48,10 +40,11 @@ def list_global_runners(*args) -> dict:
 #     return project.runners.list(get_all=True)
 
 
-def describe_runner(runner_id: str) -> dict:
+def describe_runner(runner_id: str, gl: gitlab.Gitlab) -> dict:
     """
     Get a runner’s detail:
     :param runner_id: Runner ID
+    :param gl: Gitlab object
     :return: a dict of runner's full details
     """
     try:
