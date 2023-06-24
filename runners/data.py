@@ -39,10 +39,10 @@ def list_global_runners(scope: str = "", full: bool = False, all: bool = False, 
         click.echo(message="Error in Gitlab API:"
                            f"\n{e}", err=True)
 
-
-def list_project_runners(project_id: int):
-    project = gl.projects.get(project_id)
-    return project.runners.list(get_all=True)
+# Disabled.
+# def list_project_runners(project_id: int):
+#     project = gl.projects.get(project_id)
+#     return project.runners.list(get_all=True)
 
 
 def describe_runner(runner_id: str) -> dict:
