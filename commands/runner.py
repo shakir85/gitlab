@@ -13,12 +13,12 @@ def runner():
 @click.option('--full', default=False, is_flag=True, help='Show more information about each runner.')
 @click.option('--scope', default='', type=str, required=False, help='Runner scope. Accepted values are: active, paused, online')
 @click.option('--all', '-a', default=False, is_flag=True, help='Get all runners in the Gitlab instance (specific and shared).')
-def runner_ls(full, scope, all) -> None:
+def runner_ls(scope, full, all) -> None:
     # Global runners only
     if full:
-        r = data.list_global_runners(full=True, scope=scope, all=all)
+        r = data.list_global_runners(scope, True, all)
     else:
-        r = data.list_global_runners(full=False, scope=scope, all=all)
+        r = data.list_global_runners(scope, False, all)
     for i in r:
         click.echo(i)
 

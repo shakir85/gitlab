@@ -6,33 +6,36 @@ import os
 
 try:
     gl = gitlab.Gitlab(private_token=os.environ['GITLAB_API_TOKEN'])
-except Exception:
+except KeyError:
     print("Please export environment variable GITLAB_API_TOKEN=<TokenValue>")
     sys.exit(1)
 
 
-def list_global_runners(scope: str = "", full: bool = False, all: bool = False, project: bool = False) -> dict:
+def list_global_runners(*args) -> dict:
     """
     Get a list of specific global runners (admin) runners available to the user.
-    :param scope: Filter the list based on the runner status. Accepted values are: 'active', 'paused', 'online'
-    :param full: Show complete runner's dict data
     :return: A generator for dicts of runners data
     """
-    shortlist = ('description', 'ip_address', 'is_shared', 'name', 'is_shared', 'status', 'paused')
+    ignored_items = ('description', 'ip_address', 'is_shared', 'name', 'is_shared', 'status', 'paused')
+
+    scope = args[0]
+    full = args[1]
+    all = args[2]
+
     try:
         if not scope:
             for i in gl.runners_all.list() if all else gl.runners.list():
                 if full:
                     yield i.attributes
                 else:
-                    shortened = {k: v for k, v in i.attributes.items() if k not in shortlist}
+                    shortened = {k: v for k, v in i.attributes.items() if k not in ignored_items}
                     yield shortened
         else:
             for i in gl.runners_all.list() if all else gl.runners.list(scope=scope):
                 if full:
                     yield i.attributes
                 else:
-                    shortened = {k: v for k, v in i.attributes.items() if k not in shortlist}
+                    shortened = {k: v for k, v in i.attributes.items() if k not in ignored_items}
                     yield shortened
 
     except gitlab.exceptions.GitlabError as e:
