@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""This file for configuring the CLI tool"""
 from setuptools import setup
 
 setup(
