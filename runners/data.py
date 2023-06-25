@@ -1,5 +1,6 @@
 import click
 import gitlab
+from config import Helper
 
 
 def list_global_runners(*args, gl: gitlab.Gitlab) -> dict:
@@ -31,13 +32,7 @@ def list_global_runners(*args, gl: gitlab.Gitlab) -> dict:
                     yield shortened
 
     except gitlab.exceptions.GitlabError as e:
-        click.echo(message="Error in Gitlab API:"
-                           f"\n{e}", err=True)
-
-# Disabled.
-# def list_project_runners(project_id: int):
-#     project = gl.projects.get(project_id)
-#     return project.runners.list(get_all=True)
+        Helper.echo_error(msg=f"Gitlab API: {e}")
 
 
 def describe_runner(runner_id: str, gl: gitlab.Gitlab) -> dict:
@@ -51,5 +46,4 @@ def describe_runner(runner_id: str, gl: gitlab.Gitlab) -> dict:
         return gl.runners.get(runner_id).attributes
 
     except gitlab.exceptions.GitlabError as e:
-        click.echo(message="Error in Gitlab API:"
-                           f"\n{e}", err=True)
+        Helper.echo_error(msg=f"Gitlab API: {e}")
