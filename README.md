@@ -1,5 +1,5 @@
 # gl
-This is my crappy CLI tool for working with Gitlab runners. It only provides basic list, create, and delete ops. My goal of this project is to teach myself the [Python Click library](https://click.palletsprojects.com/en/8.1.x/). This is not an actively maintained project, and you should always use the official Gitlab CLI tool. But if you're curious of how to use this tool, then this is how:
+This is my crappy CLI tool for working with Gitlab runners. It only provides a basic: list, create, and delete ops. I created this project mainly to teach myself the [Python Click library](https://click.palletsprojects.com/en/8.1.x/). This is not an actively maintained project. I may add more stuff to it but this project is really just for fun. You should always use the official Gitlab CLI. But if you're curious about how to use this tool, then this is how:
 
 Clone the repo then run
 ```sh
