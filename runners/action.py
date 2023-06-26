@@ -1,5 +1,3 @@
-import click
-import gitlab
 from config import Helper
 
 

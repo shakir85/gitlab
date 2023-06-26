@@ -13,7 +13,7 @@ def runner():
     pass
 
 
-@runner.command(aliases=["ls", "list"], help='List all runners.')
+@runner.command(aliases=["list", "ls"], help='List all runners.')
 @click.option('--full', default=False, is_flag=True, help='Show more information about each runner.')
 @click.option('--scope', default='', type=str, required=False, help='Runner scope. Accepted values are: active, paused, online')
 @click.option('--all', '-a', default=False, is_flag=True, help='Get all runners in the Gitlab instance (specific and shared).')
@@ -27,7 +27,7 @@ def list_runner(scope, full, all) -> None:
         click.echo(i)
 
 
-@runner.command(aliases=["desc", "description"], help='Describe one or multiple runners.')
+@runner.command(aliases=["describe", "desc"], help='Describe one or multiple runners.')
 @click.option('--id', '-i', multiple=True, default=list, required=True, help="One or more runners ID")
 def describe_runner(id) -> None:
     for i in id:
@@ -35,7 +35,7 @@ def describe_runner(id) -> None:
         click.echo(r)
 
 
-@runner.command(aliases=["create"], help='Create a runner')
+@runner.command(aliases=["create"], help='Create a global runner.')
 @click.option('--runner-token', '-t', default=str, required=True, help='Gitlab runner registration token.')
 @click.option('--tag', multiple=True, default=list, required=False, help='Runner tag. Can pass multiple tags.')
 @click.option('--description', '--desc', default=list, required=False, help='Runner description. Text must be quoted.')
