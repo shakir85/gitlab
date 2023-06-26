@@ -11,7 +11,9 @@ setup(
     author_email='foo@gmail.com',
     py_modules=['main'],
     install_requires=[
-        'Click',
+        'click',
+        'click-aliases',
+        'python-gitlab',
     ],
     entry_points='''
         [console_scripts]

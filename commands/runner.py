@@ -35,7 +35,7 @@ def describe_runner(id) -> None:
         click.echo(r)
 
 
-@runner.command(aliases=["create"], help='Create a runner')
+@runner.command(aliases=["create"], help='Create a global runner.')
 @click.option('--runner-token', '-t', default=str, required=True, help='Gitlab runner registration token.')
 @click.option('--tag', multiple=True, default=list, required=False, help='Runner tag. Can pass multiple tags.')
 @click.option('--description', '--desc', default=list, required=False, help='Runner description. Text must be quoted.')
