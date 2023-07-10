@@ -6,7 +6,7 @@ def list_global_runners(*args, gl: gitlab.Gitlab) -> dict:
     """
     Get a list of specific config runners (admin) runners available to the user.
     :param gl: Gitlab object
-    :return: A generator for dicts of runners data
+    :return: A generator of dicts of runners data
     """
     ignored_items = ('description', 'ip_address', 'is_shared', 'name', 'is_shared', 'status', 'paused')
 
