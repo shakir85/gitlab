@@ -1,7 +1,7 @@
 # gl
-This is my crappy CLI tool for working with Gitlab runners. It only provides a basic: list, create, and delete ops. I created this project mainly to teach myself the [Python Click library](https://click.palletsprojects.com/en/8.1.x/). This is not an actively maintained project. I may add more stuff to it but this project is really just for fun. You should always use the official Gitlab CLI. But if you're curious about how to use this tool, then this is how:
+This is a crappy CLI tool for getting things done with Gitlab runners. It's got the basics covered: listing, creating, and deleting ops, that's about it. I started this project mostly to teach myself the [Python Click library](https://click.palletsprojects.com/en/8.1.x/). Just so you know, it's not exactly a pet project I'm babysitting 24/7. I might toss in some more features down the road, but it's mostly just for kicks and giggles. If you're itching to explore how this tool works, well, here's how:
 
-Clone the repo then run
+Clone the repo, then run
 ```sh
 python3 -m pip install --editable .
 ```
